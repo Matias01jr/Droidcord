@@ -1,4 +1,4 @@
-name: Build CI
+name: Build APK for Android 2.3+
 
 on: [push, pull_request]
 
@@ -18,13 +18,14 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Perms Gradle
-        run: chmod 777 gradlew
-      - name: Build App
+      - name: Set Gradle Wrapper Permissions
+        run: chmod +x gradlew
+
+      - name: Build APK
         run: ./gradlew :app:assembleDebug --no-daemon
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: DroidCord
+          name: DroidCord-android-2.3
           path: app/build/outputs/apk/debug/*.apk
