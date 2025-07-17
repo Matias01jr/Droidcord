@@ -1,38 +1,24 @@
-plugins {
-    id 'com.android.application'
-}
-dependencies {
-    implementation 'com.squareup.okhttp3:okhttp:3.12.13'
-    implementation files('libs/Compatv4.jar')
-    implementation files('libs/zappcompats.jar')
-    implementation files('libs/customTabs.jar')
-}
+// app/build.gradle (nivel módulo/app)
+apply plugin: 'com.android.application'
 
 android {
-    namespace 'org.CreadoresProgram.CreaProDroid'
-    compileSdkVersion 21
-
+    compileSdkVersion 29
     defaultConfig {
-        minSdkVersion 17
-        targetSdkVersion 21
-        versionCode 3
-        versionName "1.2.5-beta"
-    }
-    signingConfigs {
-        debug {
-            storeFile file('CreaProDroid.keystore')
-            storePassword System.getenv("CREAPRODROIDKEYCONTREAPP")
-            keyAlias "CreaProDroidkey"
-            keyPassword System.getenv("CREAPRODROIDKEYCONTREAPP")
-        }
+        applicationId "com.tu.paquete"
+        minSdkVersion 9
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
     }
     buildTypes {
-        debug {
-            signingConfig signingConfigs.debug
-        }
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // Agrega aquí otras dependencias compatibles con minSdkVersion 9 si necesitas
 }
