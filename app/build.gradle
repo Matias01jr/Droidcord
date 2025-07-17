@@ -1,18 +1,38 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+}
+dependencies {
+    implementation 'com.squareup.okhttp3:okhttp:3.12.13'
+    implementation files('libs/Compatv4.jar')
+    implementation files('libs/zappcompats.jar')
+    implementation files('libs/customTabs.jar')
+}
 
 android {
-    compileSdkVersion 14
-    buildToolsVersion "19.1.0"
+    namespace 'org.CreadoresProgram.CreaProDroid'
+    compileSdkVersion 21
 
     defaultConfig {
-        applicationId "leap.droidcord"
-        targetSdkVersion 4
+        minSdkVersion 17
+        targetSdkVersion 21
+        versionCode 3
+        versionName "1.2.5-beta"
     }
-
+    signingConfigs {
+        debug {
+            storeFile file('CreaProDroid.keystore')
+            storePassword System.getenv("CREAPRODROIDKEYCONTREAPP")
+            keyAlias "CreaProDroidkey"
+            keyPassword System.getenv("CREAPRODROIDKEYCONTREAPP")
+        }
+    }
     buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
