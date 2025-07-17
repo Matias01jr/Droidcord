@@ -1,0 +1,37 @@
+name: Build APK for Android 2.3+
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 8
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 8
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Set Gradle Wrapper Permissions
+        run: chmod +x gradlew
+
+      # Opcional: Asegura que compile para Android 2.3 (API 9)
+      - name: Configure Gradle for minSdkVersion 9
+        run: |
+          sed -i 's/minSdkVersion[ ]*[0-9]\+/minSdkVersion 9/' app/build.gradle
+          cat app/build.gradle | grep minSdkVersion
+
+      - name: Build APK
+        run: ./gradlew :app:assembleDebug --no-daemon
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: DroidCord-android-2.3
+          path: app/build/outputs/apk/debug/*.apk
