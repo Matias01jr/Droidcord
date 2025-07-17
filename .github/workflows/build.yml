@@ -1,4 +1,4 @@
-name: Build APK
+name: Build APK (Gradle 2013 style)
 
 on:
   push:
@@ -15,11 +15,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Set up JDK 7
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '7'
 
       - name: Cache Gradle packages
         uses: actions/cache@v4
@@ -31,11 +31,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Build APK
+      - name: Build APK (2013 Gradle)
+        # Si tu gradle wrapper es gradlew y está en el root, esto funciona.
+        # Si tienes gradle en otra carpeta, ajusta el path.
         run: ./gradlew assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: app-debug-apk
-          path: app/build/outputs/apk/debug/*.apk
+          path: |
+            bin/*.apk
+            build/apk/*.apk
