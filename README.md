@@ -1,3 +1,7 @@
+## This repository is not the official one; it's just to help those who don't know how to compile. Visit the official repository here: https://github.com/leap0x7b/Droidcord
+
+## Este repositorio no es el oficial, es solo para facilitar a quienes no saben compilar. Visita el repositorio oficial aquí: https://github.com/leap0x7b/Droidcord
+
 # Droidcord
 A Discord client for old Android <4.x devices. Uses proxy servers for the [HTTP](https://github.com/gtrxAC/discord-j2me/blob/main/proxy) and [gateway](https://github.com/gtrxAC/discord-j2me-server) connection. Currently work-in-progress.
 
