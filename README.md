@@ -37,3 +37,4 @@ A Discord client for old Android <4.x devices. Uses proxy servers for the [HTTP]
 ## Credits
 - [@gtrxac](https://github.com/gtrxAC) for his [Discord J2ME](https://github.com/gtrxAC/discord-j2me) project where most of the code came from.
 - [@shinovon](https://github.com/shinovon) for their [JSON library](https://github.com/shinovon/NNJSON) (yes I know I can just use any other JSON library that works with Java 7 or whatever the hell Android 1.x uses but I'm too lazy so screw it)
+- [@leap0x7b](https://github.com/leap0x7b) Thank you for the [original project](https://github.com/leap0x7b/Droidcord) ❤️
